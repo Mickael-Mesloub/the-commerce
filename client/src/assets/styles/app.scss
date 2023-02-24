@@ -1,0 +1,11 @@
+@import './_variables.scss';
+
+body {
+    margin: 0;
+    background-color: $light-green;
+}
+
+h1 {
+    text-align: center;
+    font-family: $main-font;
+}
