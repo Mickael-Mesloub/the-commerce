@@ -4,6 +4,7 @@ const Home = () => {
         
         <>
             <h1>Bienvenue sur Thé Commerce !</h1>
+            
         </>
     
     );

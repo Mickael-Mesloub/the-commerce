@@ -2,10 +2,8 @@ import '../assets/styles/register.scss';
 import {useState, useEffect} from 'react';
 import axios from 'axios';
 
-// Mickael le code est une histoire d'amour, ne t'inquite pas, tout va bien ce passer :) 
-
-const Register = () => {
-
+const Login = () => {
+    
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     
@@ -19,7 +17,7 @@ const Register = () => {
         
         const formData = new FormData(event.target);
     
-        axios.post('http://mickaelmesloub.sites.3wa.io:9812/register', {
+        axios.post('http://mickaelmesloub.sites.3wa.io:9812/login', {
             email: formData.get('email'),
             password: formData.get('password')
         })
@@ -27,15 +25,15 @@ const Register = () => {
                 console.log(response.data)
             })
             .catch(error => {
+                console.log(error)
                 formData.get(error);
             })
-        
     }
     
     return(
     
         <>
-            <h1>Inscrivez-vous</h1>
+            <h1>Connectez-vous</h1>
             
             <form onSubmit={handleSubmit} method="post" className="register-form">
                 <div className="register-form-inputs">
@@ -46,7 +44,7 @@ const Register = () => {
                     <label htmlFor="password">Mot de passe : </label>
                     <input onChange={(event) => setPassword(event.target.value)} type="password" name="password" id="password" />
                 </div>
-                <input type="submit" name="submit" className="register-btn" value="M'inscrire" />
+                <input type="submit" name="submit" className="register-btn" value="Me connecter" />
             </form>
         
         </>
@@ -55,4 +53,4 @@ const Register = () => {
     
 };
 
-export default Register;
+export default Login;
