@@ -1,8 +1,6 @@
-import '../assets/styles/register.scss';
+import '../assets/styles/logForm.scss';
 import {useState, useEffect} from 'react';
 import axios from 'axios';
-
-// Mickael le code est une histoire d'amour, ne t'inquite pas, tout va bien ce passer :) 
 
 const Register = () => {
 
@@ -24,9 +22,10 @@ const Register = () => {
             password: formData.get('password')
         })
             .then(response => {
-                console.log(response.data)
+                console.log(response.data.token)
             })
             .catch(error => {
+                console.log(error)
                 formData.get(error);
             })
         

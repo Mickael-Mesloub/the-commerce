@@ -1,0 +1,86 @@
+@import './_variables.scss';
+@import './_placeholders.scss';
+
+
+header {
+    @extend %flex-center;
+    flex-direction: column;
+    position: relative;
+    margin: 0 auto;
+    background-color: #fff;
+}
+
+h1 {
+    text-align: center;
+    transform: translateY(50%)
+}
+
+// ---------- Div connexion et s'inscrire ---------
+
+
+.login-register-div {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    background-color: #E8E8E8;
+    
+}
+.login-register-ul {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 5px 20px;
+    margin: 0;
+}
+.login-register-ul li{
+    list-style: none;
+    padding: 5px;
+}
+
+.login-register-links{
+    text-decoration: none;
+    font-weight: 700;
+    color: $dark-green;
+    font-size: 18px;
+    transition: .5s;
+
+    &:hover {
+        color: $light-green;
+    }
+}
+
+
+// ---------- Navbar ----------
+
+
+nav {
+    margin: 0;
+    width: 50%;
+    background-color: $dark-green;
+    transform: translateY(50%);
+}
+
+nav ul{
+    display: flex;
+    gap: 10px;
+}
+
+nav ul li {
+    list-style: none;
+    padding: 5px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    background-color: $medium-green;
+    transition: .3s;
+
+    &:hover {
+        background-color: $light-green;
+    }
+}
+
+.nav-link {
+    font-size: 24px;
+    text-decoration: none;
+    font-weight: 700;
+    color: #fff;
+}

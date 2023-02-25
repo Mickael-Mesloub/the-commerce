@@ -1,4 +1,4 @@
-import '../assets/styles/register.scss';
+import '../assets/styles/logForm.scss';
 import {useState, useEffect} from 'react';
 import axios from 'axios';
 

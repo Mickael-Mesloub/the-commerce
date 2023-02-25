@@ -1,9 +1,11 @@
+import Header from '../components/Header.js'
+
 const Home = () => {
     
     return(
         
         <>
-            <h1>Bienvenue sur Thé Commerce !</h1>
+            <Header />
             
         </>
     
