@@ -1,40 +1,35 @@
-import '../assets/styles/logForm.scss';
+import '../assets/styles/logPages.scss';
 import {useState, useEffect} from 'react';
-import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import {addUser} from '../store/slices/user/userSlice.js';
+import Header from '../components/Header.js'
+import Auth from '../components/Auth.js';
+
 
 const Login = () => {
     
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [isLogged, setisLogged] = useState(null);
     
-    useEffect(() => {
-        console.log(`Email: ${email} -- Password: ${password}`)
-    }, [email, password])
-    
+    const state = useSelector(state => state);
+    const dispatch = useDispatch()
+
+
     const handleSubmit = (event) => {
         
         event.preventDefault();
-        
-        const formData = new FormData(event.target);
-    
-        axios.post('http://mickaelmesloub.sites.3wa.io:9812/login', {
-            email: formData.get('email'),
-            password: formData.get('password')
-        })
-            .then(response => {
-                console.log(response.data)
-            })
-            .catch(error => {
-                console.log(error)
-                formData.get(error);
-            })
+        Auth(event, 'http://localhost:9812/login', setisLogged )
+        dispatch(addUser({...state, email: email, password: password}));
+        console.log(state)
     }
     
     return(
     
         <>
-            <h1>Connectez-vous</h1>
             
+            <Header />
+            <h2>Connectez-vous</h2>
             <form onSubmit={handleSubmit} method="post" className="register-form">
                 <div className="register-form-inputs">
                     <label htmlFor="email">Email : </label>
@@ -46,6 +41,11 @@ const Login = () => {
                 </div>
                 <input type="submit" name="submit" className="register-btn" value="Me connecter" />
             </form>
+            {isLogged && 
+                <span className="register-msg">Vous êtes connecté(e) !</span>}
+                {isLogged === false && 
+                <span className="register-msg error">Email ou mot de passe incorrect.</span>
+            }
         
         </>
     

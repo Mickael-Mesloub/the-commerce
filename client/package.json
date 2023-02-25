@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "dependencies": {
+    "@reduxjs/toolkit": "^1.9.3",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -16,6 +17,7 @@
     "sass": "^1.58.3",
     "web-vitals": "^2.1.4"
   },
+  "proxy": "http://mickaelmesloub.sites.3wa.io:9812",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
