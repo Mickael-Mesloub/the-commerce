@@ -34,38 +34,43 @@ const Register = () => {
                 <>
                     <div className="login-register-div">
                         <ul className="login-register-ul">
-                            <li><Link onClick={(e) => dispatch(logoutUser())} className="login-register-links">Déconnexion</Link></li>
+                            <li>
+                                <Link 
+                                    onClick={() => {
+                                        dispatch(logoutUser()); 
+                                        localStorage.removeItem('jwt')
+                                    }} 
+                                    className="login-register-links" >
+                                    Déconnexion
+                                </Link>
+                            </li>
                         </ul>
                     </div>
                     <Header />
-                    
                 </>
-            :
-            <>  
-                <LogNav />
-                <Header />
-                <h2>Inscrivez-vous</h2>
-                <form onSubmit={handleSubmit} method="post" className="register-form">
-                    <div className="register-form-inputs">
-                        <label htmlFor="email">Email : </label>
-                        <input type="email" name="email" id="email" />
-                    </div>
-                    <div className="register-form-inputs">
-                        <label htmlFor="password">Mot de passe : </label>
-                        <input type="password" name="password" id="password" />
-                    </div>
-                    <input type="submit" name="submit" className="register-btn" value="M'inscrire" />
-                </form>
-                {state.user.logged && 
-                    <span className="register-msg">Votre compte a bien été créé !</span>}
-                    {state.user.logged === false && 
-                    <span className="register-msg error">Cet utilisateur existe déjà. Veuillez entrer une nouvelle adresse email.</span>
-                }
-            
-            </>
-
+                :
+                <>  
+                    <LogNav />
+                    <Header />
+                    <h2>Inscrivez-vous</h2>
+                    <form onSubmit={handleSubmit} method="post" className="register-form">
+                        <div className="register-form-inputs">
+                            <label htmlFor="email">Email : </label>
+                            <input type="email" name="email" id="email" />
+                        </div>
+                        <div className="register-form-inputs">
+                            <label htmlFor="password">Mot de passe : </label>
+                            <input type="password" name="password" id="password" />
+                        </div>
+                        <input type="submit" name="submit" className="register-btn" value="M'inscrire" />
+                    </form>
+                    {state.user.logged && 
+                        <span className="register-msg">Votre compte a bien été créé !</span>}
+                        {state.user.logged === false && 
+                        <span className="register-msg error">Cet utilisateur existe déjà. Veuillez entrer une nouvelle adresse email.</span>
+                    }
+                </>
             }
-
         </>
     );
 }
