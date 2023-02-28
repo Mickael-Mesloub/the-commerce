@@ -1,61 +1,73 @@
 import '../assets/styles/logPages.scss';
 import {useState, useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {addUser} from '../store/slices/user/userSlice.js';
+import {loginUser, logoutUser} from '../store/slices/user/userSlice.js';
+import { Link } from "react-router-dom"
 import Header from '../components/Header.js';
+import LogNav from '../components/LogNav.js';
 import Auth from '../components/Auth.js';
-
-
 
 const Register = () => {
 
     // ***** STATES *****
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [isRegistered, setIsRegistered] = useState(null);
     
-    // ***** USEFFECTS *****
-
+    const [token, setToken] = useState('');
 
     // ***** REDUX *****
     const state = useSelector(state => state);
     const dispatch = useDispatch();
     
+    // ***** USEFFECTS *****
+
 
     // ***** FONCTIONS *****
     const handleSubmit = (event) => {
         event.preventDefault();
-        Auth(event, 'http://localhost:9812/register', setIsRegistered );
-        dispatch(addUser({...state, email: email, password: password}));
-        console.log(state)
+        Auth(event, 'http://localhost:9812/register', token, setToken, dispatch, loginUser);
     }
+    console.log(token);
+
+    return (
     
-    return(
-    
-        <>
-            <Header />
-            <h2>Inscrivez-vous</h2>
-            <form onSubmit={handleSubmit} method="post" className="register-form">
-                <div className="register-form-inputs">
-                    <label htmlFor="email">Email : </label>
-                    <input onChange={(event) => setEmail(event.target.value)} type="email" name="email" id="email" />
-                </div>
-                <div className="register-form-inputs">
-                    <label htmlFor="password">Mot de passe : </label>
-                    <input onChange={(event) => setPassword(event.target.value)} type="password" name="password" id="password" />
-                </div>
-                <input type="submit" name="submit" className="register-btn" value="M'inscrire" />
-            </form>
-            {isRegistered && 
-                <span className="register-msg">Votre compte a bien été créé !</span>}
-                {isRegistered === false && 
-                <span className="register-msg error">Cet utilisateur existe déjà. Veuillez entrer une nouvelle adresse email.</span>
+            <>
+            {state.user.logged ?
+                <>
+                    <div className="login-register-div">
+                        <ul className="login-register-ul">
+                            <li><Link onClick={(e) => dispatch(logoutUser())} className="login-register-links">Déconnexion</Link></li>
+                        </ul>
+                    </div>
+                    <Header />
+                    
+                </>
+            :
+            <>  
+                <LogNav />
+                <Header />
+                <h2>Inscrivez-vous</h2>
+                <form onSubmit={handleSubmit} method="post" className="register-form">
+                    <div className="register-form-inputs">
+                        <label htmlFor="email">Email : </label>
+                        <input type="email" name="email" id="email" />
+                    </div>
+                    <div className="register-form-inputs">
+                        <label htmlFor="password">Mot de passe : </label>
+                        <input type="password" name="password" id="password" />
+                    </div>
+                    <input type="submit" name="submit" className="register-btn" value="M'inscrire" />
+                </form>
+                {state.user.logged && 
+                    <span className="register-msg">Votre compte a bien été créé !</span>}
+                    {state.user.logged === false && 
+                    <span className="register-msg error">Cet utilisateur existe déjà. Veuillez entrer une nouvelle adresse email.</span>
+                }
+            
+            </>
+
             }
-        
+
         </>
-    
     );
-    
-};
+}
 
 export default Register;

@@ -7,16 +7,13 @@ import loginRouter from './router/loginRouter.js';
 const app = express();
 const PORT = 9812;
 
-
-
-
 app.use(express.static('public'));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
 
 mongoose.set('strictQuery', false);
-mongoose.connect('mongodb://mickaelmesloub:7ec5f7e95281aca82596dea572064987@mongodb.3wa.io:27017/mickaelmesloub?authSource=admin');
+mongoose.connect('mongodb+srv://mickaelmesloub:123@clusterapp.pxkxgvb.mongodb.net/?retryWrites=true&w=majority');
 
 mongoose.connection.on("error", () => {
     console.log("Erreur lors de la connexion à la base de données");

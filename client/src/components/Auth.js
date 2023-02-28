@@ -1,24 +1,38 @@
-import axios from 'axios';
 
+const Auth = (event, url, state, setState, dispatcher, actionCreator) => {
+    const formData = new FormData(event.target);
 
-
-const Auth = (e, url, setLogState) => {
-    const formData = new FormData(e.target);
-
-    axios.post(url, {
-        email: formData.get('email'),
-        password: formData.get('password')
-    })
-        .then(response => {
-            console.log(response);
-            if(response) {
-                setLogState(true)
+        fetch(url, {
+            method: 'POST',
+            body: JSON.stringify({
+                email: formData.get('email'),
+                password: formData.get('password')
+            }),
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${state}`,
             }
+            
         })
-        .catch(error => {
-            console.log(error)
-            formData.get(error);
-            setLogState(false)
+        .then(response => {
+            response.json()
+            .then(data => {
+                if(response.ok){
+                    console.log(data)
+                    dispatcher(actionCreator({email: data.user.email}))
+                    console.log(data.token)
+                    setState(data.token)
+                    localStorage.setItem('jwt' , data.token)
+
+                } else{
+                    console.log('err');
+
+                }
+            })
+            .catch(error => {
+                console.log(error)
+                formData.get(error)
+            })
         })
 }
 

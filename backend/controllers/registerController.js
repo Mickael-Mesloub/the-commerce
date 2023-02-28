@@ -28,7 +28,7 @@ export const register = async(req, res, next) => {
                 
                 const token = user.createJWT();
                 console.log(`Nouvel utilisateur: ${user} et son TOKEN: ${token}`);
-                res.status(200).json({message: "Votre compte a bien été créé!", token});
+                res.status(200).json({message: "Votre compte a bien été créé!", user, token});
 
             })
             

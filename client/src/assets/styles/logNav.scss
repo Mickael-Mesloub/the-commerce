@@ -1,0 +1,35 @@
+@import './_variables.scss';
+@import './_placeholders.scss';
+
+// ---------- Div connexion et s'inscrire ---------
+
+.login-register-div {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    background-color: #E8E8E8;
+    
+}
+.login-register-ul {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 5px 20px;
+    margin: 0;
+}
+.login-register-ul li{
+    list-style: none;
+    padding: 5px;
+}
+
+.login-register-links{
+    text-decoration: none;
+    font-weight: 700;
+    color: $dark-green;
+    font-size: 18px;
+    transition: .5s;
+
+    &:hover {
+        color: $light-green;
+    }
+}

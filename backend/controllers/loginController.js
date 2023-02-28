@@ -16,7 +16,7 @@ export const login = async(req, res) => {
             if (err) return res.status(500).json({ message: 'Erreur serveur' });
             if (isMatch) {
                 const token = user.createJWT();
-                return res.status(200).json({message: "Bienvenue !", token});
+                return res.status(200).json({message: "Bienvenue !", user, token});
             } else {
                 return res.status(404).json({message: 'Email ou mot de passe incorrect.'})
             }
