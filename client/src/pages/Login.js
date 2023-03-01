@@ -1,14 +1,12 @@
 import '../assets/styles/logPages.scss';
 import '../assets/styles/logNav.scss';
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {loginUser, logoutUser} from '../store/slices/user/userSlice.js';
 import { Link } from "react-router-dom"
 import Header from '../components/Header.js';
 import LogNav from '../components/LogNav.js';
 import Auth from '../components/Auth.js';
-import LogoutNav from '../components/LogoutNav.js';
-
 
 const Login = () => {
     

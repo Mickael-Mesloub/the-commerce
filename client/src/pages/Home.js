@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import {loginUser, logoutUser} from '../store/slices/user/userSlice.js';
+import {logoutUser} from '../store/slices/user/userSlice.js';
 import Header from '../components/Header.js';
 import LogNav from '../components/LogNav.js';
 

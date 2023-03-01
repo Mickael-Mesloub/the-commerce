@@ -1,5 +1,5 @@
+const Auth = (event, url, state, setState, dispatcher, actionCreator, ) => {
 
-const Auth = (event, url, state, setState, dispatcher, actionCreator) => {
     const formData = new FormData(event.target);
 
         fetch(url, {
@@ -18,15 +18,11 @@ const Auth = (event, url, state, setState, dispatcher, actionCreator) => {
             response.json()
             .then(data => {
                 if(response.ok){
-                    console.log(data)
                     dispatcher(actionCreator({email: data.user.email}))
-                    console.log(data.token)
                     setState(data.token)
                     localStorage.setItem('jwt' , data.token)
-
-                } else{
+                } else {
                     console.log('err');
-
                 }
             })
             .catch(error => {

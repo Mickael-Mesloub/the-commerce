@@ -3,6 +3,8 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import registerRouter from './router/registerRouter.js';
 import loginRouter from './router/loginRouter.js';
+import adminRouter from './router/adminRouter.js';
+import verifyTokenRouter from './router/verifyTokenRouter.js';
 
 const app = express();
 const PORT = 9812;
@@ -25,15 +27,10 @@ mongoose.connection.on("open", () => {
 
 app.use('/register' , registerRouter);
 app.use('/login' , loginRouter);
+app.use('/admin' , adminRouter);
+app.use('/verify-token' , verifyTokenRouter);
 
 app.use(cors());
-app.use(function(req, res, next) {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
-    res.header('Access-Control-Allow-Credentials', 'true'); // permet les requêtes avec les informations d'identification
-    next();
-  })
 
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
