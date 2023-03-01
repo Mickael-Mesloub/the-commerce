@@ -6,6 +6,8 @@ import Home from './pages/Home.js';
 import Register from './pages/Register.js';
 import Login from './pages/Login.js';
 import Dashboard from './pages/Dashboard.js';
+import { loginUser } from './store/slices/user/userSlice.js';
+import verifyToken from './components/VerifyToken.js';
 
 
 const App = () => {
@@ -16,10 +18,12 @@ const App = () => {
 
     useEffect(() => {
         const token = localStorage.getItem('jwt')
-        if(token && !user.logged) {
-            console.log("connected")
-        }
-    },[])
+
+    if(token && !user.logged) {
+        verifyToken('http://localhost:9812/verify-token', token, dispatch, loginUser);
+    }
+    }, []);
+
 
     useEffect(() => {
         console.log(user);
