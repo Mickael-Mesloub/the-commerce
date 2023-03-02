@@ -1,10 +1,14 @@
 import productModel from "../models/productModel.js";
 
+
 export const createProduct = async (req, res) => {
 
     const {name, desc, quantity, price} = req.body;
 
+    // Fonction asynchrone: accède à la DB donc meilleure gestion des erreurs car la requête peut prendre du temps 
+
     try {
+
         const newProduct = await productModel.create({
             name: name,
             description: desc,
@@ -21,46 +25,52 @@ export const createProduct = async (req, res) => {
     }
 }
 
-export const getAllProducts = (req, res) => {
-    productModel.find({}, (err, products) => {
+export const getAllProducts = async (req, res) => {
+    try {
+
+        const products = await productModel.find({})
         res.status(200).json(products)
-        if(err) {
-            res.status(400).json({message: err})
-        }
-    })
+
+    } catch(err) {
+        res.status(400).json({message: err})
+    }
 }   
 
-export const getProduct = (req, res) => {
-    const product = productModel.findOne({_id: req.params.id}, err, product => {
+export const getProductDetails = async (req, res) => {
+
+    try {
+
+        const product = await productModel.findOne({_id: req.params.id})
         res.status(200).json(product)
-        if(err) {
-            res.status(400).json({message: "Produit introuvable"})
-        }
-    })
+
+    } catch(err){
+        res.status(400).json({message: "Produit introuvable"})
+    }
+    
 }
 
+export const updateProduct = async (req, res) => {
 
+    try {
 
-// Récupérer id du product
+        const product = await productModel.findOne({_id: req.params.id})
+        productModel.updateOne({_id: req.params.id}, {...req.body, _id: req.params.id})
+        res.status(200).json({message: `Le produit ${product.name} modifié avec succès!`})
 
-
-export const updateProduct = (req, res) => {
-
-    const {name, desc, quantity, price} = req.body;
-
-    productModel.updateOne({_id: ObjectId},{
-        name: name,
-        description: desc,
-        // image: image,
-        quantity: quantity,
-        price: price
-    })
-    .then(updatedProduct => {
-        console.log(updatedProduct._id);
-    })
+    } catch(err) {   
+        res.status(400).json({message: err})
+    }
 }
 
-/* 
+export const deleteProduct = async (req, res) => {
 
+    try {
 
-*/
+        const product = await productModel.findOne({_id: req.params.id})
+        await productModel.findByIdAndDelete({_id: req.params.id})
+        res.status(200).json({message:`Le produit ${product.name} a été supprimé avec succès!`})
+
+    } catch(err) {
+        res.status(400).json({message: err})
+    }
+}
