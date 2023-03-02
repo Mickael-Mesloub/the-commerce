@@ -2,13 +2,12 @@ import userModel from '../models/userModel.js';
 
 export const register = (req, res) => {
 
-    const {email, password} = req.body;
+    const {email, password, isAdmin} = req.body;
 
         userModel.create({
-
             email,
-            password
-
+            password,
+            isAdmin
         })
         .then((user) => {
             

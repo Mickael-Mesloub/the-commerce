@@ -1,7 +1,6 @@
 import jwt from 'jsonwebtoken';
 import userModel from '../models/userModel.js';
 
-// Middleware to verify JWT tokens
 const verifyToken = async (req, res) => {
 
     // Récupérer un token
@@ -17,6 +16,7 @@ const verifyToken = async (req, res) => {
     
     // Analyser le token
     jwt.verify(token, "key_secret", async (err, decoded) => {
+        console.log(decoded);
         // Si token invalide: renvoie une erreur
         if (err) {
             console.log(err);
@@ -34,13 +34,6 @@ const verifyToken = async (req, res) => {
             }
         })
     });
-
-    
-    
-    
-    
-
 }
 
   export default verifyToken
-  

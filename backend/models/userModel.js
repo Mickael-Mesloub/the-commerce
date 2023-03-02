@@ -6,13 +6,18 @@ const userModel = new mongoose.Schema({
     
     email: { 
         type: String,
-        unique: true
+        required: true,
+        unique: true,
     },
     password: {
-        type: String
+        type: String,
+        required: true
     },
     isAdmin: {
-        type: Boolean
+        type: Boolean,
+        default: function() {
+            return this.email === "admin@admin.com" || this.email === "mickael.mesloub@gmail.com" 
+        }
     }
 },  {
     timestamps: true,
