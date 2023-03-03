@@ -14,6 +14,7 @@ const Header = () => {
             <nav>
                 <ul>
                 <li><Link to="/" className="nav-link">Accueil</Link></li>
+                <li><Link to="/shop" className="nav-link">Boutique</Link></li>
                 {state.user.logged && 
                     <li><Link to="/dashboard" className="nav-link">Dashboard</Link></li>
                 }

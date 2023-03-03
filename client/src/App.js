@@ -6,6 +6,7 @@ import Home from './pages/Home.js';
 import Register from './pages/Register.js';
 import Login from './pages/Login.js';
 import Dashboard from './pages/Dashboard.js';
+import Shop from './pages/Shop.js';
 import { loginUser } from './store/slices/user/userSlice.js';
 import verifyToken from './components/VerifyToken.js';
 
@@ -37,6 +38,7 @@ const App = () => {
                     <Route path='/register' element={<Register />} />
                     <Route path='/login' element={<Login />} />
                     <Route path='/dashboard' element={<Dashboard />} />
+                    <Route path='/shop' element={<Shop />} />
                 </Routes>
             </BrowserRouter>
         </>
