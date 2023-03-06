@@ -20,8 +20,14 @@ const userModel = new mongoose.Schema({
         }
     }
 },  {
-    timestamps: true,
-    versionKey: false
+    createdAt: {
+        type: String,
+        default: new Date().toLocaleString('fr-FR')
+    },
+    updatedAt: {
+        type: String,
+        default: new Date().toLocaleString('fr-FR')
+    }
     }
 );
 

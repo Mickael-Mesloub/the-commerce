@@ -11,40 +11,39 @@ Il faut avant tout vérifier côté backend que les routes ne sont pas crashées
 Côté serveur, une route ne peut pas être acceptée s'il n'y a pas de JWT
     
 
+05/03:
 
-auth.js:
-
-const verifyToken = async (req, res, next) => {
-
-    let token = req.headers('Authorization') 
-
-}
+    Produits: 
+    - Créer produit avec possibilité d'upload plusieurs images :
+        > Vérifier si files contient des images -> si non, erreur, si oui :
+            > 
 
 
-page dashboard.js : 
+    Update images : 
+    on récup les ancienens images qu'on filtre avec celles q'uon veut supp 
+    les stocker dans tableau images [] sauf si elles se trouvent dans le field deleteImage (fields['deleteImage'].include OU fields.deleteImages.include)
+    on récup les nouvelles images qu'on veut ajouter qui se trouvent dans le champ images (files.images)
+    quand on a récupéré les images, on supp les images qu'on veut supp (boucle foreach)
+    une fois supprimées, rajouter les images qu'on veut ajouter (images.push(...newImages))
 
-export const Dashboard = () => {
-    const {user} = useSelector(state => state)
-    useEffect(() => {
-        console.log(user)
-    },[user])
 
 
-    useEffect(() => {
-        const token = localStorage.getItem('jwt)
-        if(token && !user.isLogged) {
-            getVerifyToken()
-            .then(data => {
-                dispatch(loginUser(data))
-                navigate('/dashboard')
-            })
-            .catch(err) => {
-                navigate('/logout')
-            }
-        }
-    })
-}
+    - Gérer affichage fiche produit + images
+    - Modif / supp images quand supp produit
 
+    Récupérer champ deletedImages[0]
+    dans Postman: copier nom image à supprimer 
+    les supprimer + fs unlink 
+    - Form création/modification de produit
+
+    Admin: 
+    - Gérer les erreurs du register: messages différents selon l'erreur
+    - Faire page admin avec affichage produits
+    - "" "" "" "" form créer/modifier un produit
+    - Protéger la route: accessible que si isAdmin true
+
+    Logout: 
+    - Vérifier le bon fonctionnement du logout: navigate si logged false
 
 
 */

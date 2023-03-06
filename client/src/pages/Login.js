@@ -10,7 +10,7 @@ import Auth from '../components/Auth.js';
 
 const Login = () => {
     
-    const state = useSelector(state => state);
+    const {user} = useSelector(state => state);
     const dispatch = useDispatch()
 
     const [token, setToken] = useState('')
@@ -23,7 +23,7 @@ const Login = () => {
     return (
 
         <>
-            {state.user.logged ?
+            {user.isLogged ?
                 <>
                     <div className="login-register-div">
                         <ul className="login-register-ul">
@@ -57,10 +57,10 @@ const Login = () => {
                         </div>
                         <input type="submit" name="submit" className="register-btn" value="Connexion" />
                     </form>
-                    {state.user.logged && 
+                    {user.isLogged && 
                         <span className="register-msg">Vous êtes connecté !</span>
                     }
-                    {state.user.logged === false && 
+                    {user.isLogged === false && 
                     <span className="register-msg error">Cet utilisateur n'existe pas.</span>
                     }
                 

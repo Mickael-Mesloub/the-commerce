@@ -6,12 +6,12 @@ import LogNav from '../components/LogNav.js';
 
 const Home = () => {
     
-    const state = useSelector(state => state);
+    const {user} = useSelector(state => state);
     const dispatch = useDispatch();
 
     return (
         <>
-            {state.user.logged ?
+            {user.isLogged ?
                 <>
                     <div className="login-register-div">
                         <ul className="login-register-ul">

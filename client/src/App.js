@@ -9,26 +9,25 @@ import Dashboard from './pages/Dashboard.js';
 import Shop from './pages/Shop.js';
 import { loginUser } from './store/slices/user/userSlice.js';
 import verifyToken from './components/VerifyToken.js';
+import Admin from './pages/Admin.js';
 
 
 const App = () => {
 
     const {user} = useSelector(state => state);
     const dispatch = useDispatch();
-    console.log(user)
 
     useEffect(() => {
         const token = localStorage.getItem('jwt')
-
-    if(token && !user.logged) {
-        verifyToken('http://localhost:9812/verify-token', token, dispatch, loginUser);
-    }
+        if(token && !user.logged) {
+            verifyToken('http://localhost:9812/verify-token', token, dispatch, loginUser);
+        }
     }, []);
 
 
-    useEffect(() => {
-        console.log(user);
-    },[user])
+    // useEffect(() => {
+    //     console.log(user);
+    // },[user])
 
     return (
         <>
@@ -39,6 +38,7 @@ const App = () => {
                     <Route path='/login' element={<Login />} />
                     <Route path='/dashboard' element={<Dashboard />} />
                     <Route path='/shop' element={<Shop />} />
+                    <Route path='/admin' element={<Admin />} />
                 </Routes>
             </BrowserRouter>
         </>

@@ -1,0 +1,19 @@
+@import './_variables.scss';
+@import './_placeholders.scss';
+
+.products-shop {
+    @extend %flex-center;
+    flex-wrap: wrap;
+}
+
+.product-container {
+    width: 31%;
+    margin: 1%;
+    background-color: $dark-green;
+    border-radius: 10px;
+
+
+    p {
+        font-weight: 700;
+    }
+}

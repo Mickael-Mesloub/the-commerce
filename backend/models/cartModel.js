@@ -8,8 +8,14 @@ const cartModel = new mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId, ref: "Product"
         }
     }, {
-        timestamps: true,
-        versionKey: false
+        createdAt: {
+            type: String,
+            default: new Date().toLocaleString('fr-FR')
+        },
+        updatedAt: {
+            type: String,
+            default: new Date().toLocaleString('fr-FR')
+        }
     }
 );
 

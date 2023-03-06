@@ -4,7 +4,7 @@ import '../assets/styles/header.scss';
 
 const Header = () => {
     
-    const state = useSelector(state => state);
+    const {user} = useSelector(state => state);
     const dispatch = useDispatch();
 
     return(
@@ -15,7 +15,7 @@ const Header = () => {
                 <ul>
                 <li><Link to="/" className="nav-link">Accueil</Link></li>
                 <li><Link to="/shop" className="nav-link">Boutique</Link></li>
-                {state.user.logged && 
+                {user.isAdmin && 
                     <li><Link to="/dashboard" className="nav-link">Dashboard</Link></li>
                 }
                 </ul>

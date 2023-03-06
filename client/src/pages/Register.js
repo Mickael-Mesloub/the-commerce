@@ -14,7 +14,7 @@ const Register = () => {
     const [token, setToken] = useState('');
 
     // ***** REDUX *****
-    const state = useSelector(state => state);
+    const {user} = useSelector(state => state);
     const dispatch = useDispatch();
     
     // ***** USEFFECTS *****
@@ -30,7 +30,7 @@ const Register = () => {
     return (
     
             <>
-            {state.user.logged ?
+            {user.isLogged ?
                 <>
                     <div className="login-register-div">
                         <ul className="login-register-ul">
@@ -64,9 +64,9 @@ const Register = () => {
                         </div>
                         <input type="submit" name="submit" className="register-btn" value="M'inscrire" />
                     </form>
-                    {state.user.logged && 
+                    {user.isLogged && 
                         <span className="register-msg">Votre compte a bien été créé !</span>}
-                        {state.user.logged === false && 
+                        {user.isLogged === false && 
                         <span className="register-msg error">Cet utilisateur existe déjà. Veuillez entrer une nouvelle adresse email.</span>
                     }
                 </>

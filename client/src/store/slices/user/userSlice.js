@@ -4,23 +4,25 @@ export const userSlice = createSlice({
     name: 'userSlice',
     initialState: {
         email: '',
-        logged: null
+        isLogged: null,
+        isAdmin: false
         
     },
     reducers: {
         loginUser: (state, action) => {
-            console.log(action)
             return {
                 ...state,
                 email: action.payload.email,
-                logged: true
+                isLogged: true,
+                isAdmin: action.payload.isAdmin
             }
         },
         logoutUser: (state) => {
             return {
                 ...state,
                 email: '',
-                logged: null
+                isLogged: null,
+                isAdmin: null
             }
         }
     }

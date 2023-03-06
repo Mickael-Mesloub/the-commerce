@@ -24,10 +24,9 @@ const Dashboard = () => {
             verifyToken('http://localhost:9812/verify-token', token, dispatch, loginUser)
             .catch(err => {
                 console.log(err)
-                
             })
         }
-    })
+    }, [])
 
 
     useEffect(() => {

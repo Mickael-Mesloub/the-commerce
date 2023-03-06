@@ -1,5 +1,7 @@
 const verifyToken = async (url, token, dispatch, actionCreator) => {
 
+// pour secret key : voir process.env
+
     try {
 
         const response = await fetch(url, {

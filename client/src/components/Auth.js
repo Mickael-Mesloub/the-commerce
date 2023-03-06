@@ -18,7 +18,7 @@ const Auth = (event, url, state, setState, dispatcher, actionCreator, ) => {
             response.json()
             .then(data => {
                 if(response.ok){
-                    dispatcher(actionCreator({email: data.user.email}))
+                    dispatcher(actionCreator({email: data.user.email, isAdmin: data.user.isAdmin}))
                     setState(data.token)
                     localStorage.setItem('jwt' , data.token)
                 } else {
